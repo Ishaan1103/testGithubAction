@@ -3,7 +3,7 @@ name: Build succeeds on PR
 on:
     pull_request:
         branches:
-            - main
+            - master
 
 jobs:
     build:
@@ -18,6 +18,9 @@ jobs:
             
             - name: Install Dependencies
               run: npm install
+            
+            - name: Generate Prisma
+              run: cd packages/db && npx prisma generate dev && cd ../..
               
             - name: Run Build
               run: npm run build
